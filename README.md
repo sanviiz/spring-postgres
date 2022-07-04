@@ -11,7 +11,7 @@ First, change directory in your terminal to this project.
 
 ### Run Server
 
-Check dependycies(`pom.xml`) working properly before run server:
+Check dependencies(`pom.xml`) working properly before run server:
 ```
 mvn validate
 ```
