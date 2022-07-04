@@ -27,7 +27,6 @@ public class TutorialController {
     @RequestParam(defaultValue = "3") int size
   ) {
     try {
-      List<Tutorial> tutorials = new ArrayList<Tutorial>();
       Pageable paging = PageRequest.of(page, size);
       Page<Tutorial> pageTutorials;
       if (title == null) {
@@ -35,7 +34,7 @@ public class TutorialController {
       } else {
         pageTutorials = tutorialRepository.findByTitleContaining(title, paging);
       }
-      tutorials = pageTutorials.getContent();
+      List<Tutorial> tutorials = pageTutorials.getContent();
       Map<String, Object> response = new HashMap<>();
       response.put("tutorials", tutorials);
       response.put("currentPage", pageTutorials.getNumber());
@@ -100,7 +99,7 @@ public class TutorialController {
     }
   }
 
-  @DeleteMapping("/tutorial/{id}")
+  @DeleteMapping("/tutorials/{id}")
   public ResponseEntity<HttpStatus> deleteTutorial(@PathVariable("id") long id) {
     try {
       tutorialRepository.deleteById(id);
